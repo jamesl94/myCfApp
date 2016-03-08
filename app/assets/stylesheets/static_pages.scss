@@ -1,3 +1,32 @@
 // Place all the styles related to the static_pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+h2{
+	color: green;
+}
+
+//Footer
+footer{
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 30px;
+	width: 100%;
+	background-color: #707070;
+}
+
+footer .facebook{
+	position: fixed;
+	right: 10px;
+}
+//Typography
+*{
+	font-family: Futura, helvetica, sans-serif;
+}
+
+footer{
+	color: white;
+}

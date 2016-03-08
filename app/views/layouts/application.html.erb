@@ -2,22 +2,59 @@
 <html>
 <head>
   <title>MyCfApp</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= csrf_meta_tags %>
 </head>
+
 <body>
 
-<nav>
-	<ul>
-		<li>Home</li>
-		<li>About</li>
-		<li>Contact</li>
-	</ul>
+<!-- Facebook Plugin -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">My CF E-commerce app</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li> 
+      <li><a href="#">Contact</a></li> 
+    </ul>
+  </div>
 </nav>
+
 <%= yield %>
+<%= image_tag("motercycle.jpg", class: "img-responsive") %>
+
 <footer>
-	&copy; James Lipe
+	<div class="container-fluid">
+		<span class="copyright">
+			&copy; James Lipe
+		</span>
+		<span class="facebook">
+			<span>
+				Like our Facebook page
+			</span>
+			<div class="fb-like" data-href="https://www.facebook.com/StateBicycle/" data-width="30" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+		</span>
+	</div>
 </footer>
+
 </body>
 </html>
