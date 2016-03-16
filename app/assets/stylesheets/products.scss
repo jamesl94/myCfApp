@@ -1,3 +1,33 @@
 // Place all the styles related to the products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+h2{
+	color: #000000;
+}
+
+.product-wrapper{
+	margin: 10px;
+	padding-left: 10px;
+	border: 1px solid black;
+	border-radius: 8px;
+}
+
+
+//Getting product div to wrap around as if all were same height
+.row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+}
+.row > [class*='col-'] {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-row{
+	margin-bottom: 40px;
+}
