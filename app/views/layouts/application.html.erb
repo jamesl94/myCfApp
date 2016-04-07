@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head>    
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MyCfApp</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -36,6 +39,15 @@
       <li><a href="#">About</a></li> 
       <li><a href="#">Contact</a></li> 
     </ul>
+    <form class="navbar-form navbar-right" role="search">
+      <div class="form-group">
+        <%= form_tag url_for(controller: 'products', action: 'index'), method: "get" do %>
+          <%= label_tag(:q, 'Search for: ', style:'color: white') %>
+          <%= text_field_tag(:q) %>
+          <%= submit_tag('Search') %>
+        <% end %>
+      </div>
+    </form>
   </div>
 </nav>
 
