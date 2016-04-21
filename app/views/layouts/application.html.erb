@@ -35,9 +35,9 @@
       <a class="navbar-brand" href="#">My CF E-commerce app</a>
     </div>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">About</a></li> 
-      <li><a href="#">Contact</a></li> 
+      <li><%= link_to "Home", controller: "static_pages", action: "landing_page" %></li>
+      <li><%= link_to "About", controller: "static_pages", action: "about" %></li> 
+      <li><%= link_to "Contact", controller: "static_pages", action: "contact" %></li> 
     </ul>
     <%= form_tag '/products', method: "get", class: "navbar-form navbar-left" do %>
       <div class="form-group">
