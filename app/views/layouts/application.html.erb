@@ -6,14 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MyCfApp</title>
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+
 
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -35,10 +37,20 @@
       <a class="navbar-brand" href="#">My CF E-commerce app</a>
     </div>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">About</a></li> 
-      <li><a href="#">Contact</a></li> 
+      <li><%= link_to "Home", controller: "/static_pages", action: "landing_page" %></li>
+      <li><%= link_to "About", controller: "/static_pages", action: "about" %></li> 
+      <li><%= link_to "Contact", controller: "/static_pages", action: "contact" %></li> 
     </ul>
+    <ul class="nav pull-right">
+      <li>
+      <% if user_signed_in? %>
+        <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+      <% else %>
+        <%= link_to('Login', new_user_session_path) %>
+      <% end %>
+      </li>
+    </ul>
+    </div>
     <%= form_tag '/products', method: "get", class: "navbar-form navbar-left" do %>
       <div class="form-group">
         <%= label_tag(:q, 'Search for: ', style:'color: white') %>
@@ -49,6 +61,10 @@
     <% end %>
   </div>
 </nav>
+
+<!-- Notice Message -->
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
 
 <%= yield %>
 
