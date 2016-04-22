@@ -56,5 +56,8 @@ end
 #Devise for authentication
 gem 'devise'
 
+#CanCanCan for autherization
+gem 'cancancan'
+
 
 
