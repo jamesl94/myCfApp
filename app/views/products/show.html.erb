@@ -14,6 +14,8 @@
           <b><span style="display: inline-block; float: right;"><%= "$%.0f" % @product.price %></span></b>
         </div><!-- End caption -->
       </div><!-- End thumbnail -->
+      <%= render partial: "new_comment" %>
+      <%= render partial: "comments" %>
     </div><!-- End col -->
   </div><!-- End row -->
   <br/>
