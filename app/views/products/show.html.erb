@@ -17,9 +17,11 @@
       </div><!-- End thumbnail -->
       <%= render partial: "new_comment" %>
       <%= render partial: "comments" %>
-      <div class="apple_pagination">
-        <%= will_paginate @comments, container: false %>
-      </div><!-- End pagination -->
+      <% if will_paginate @comments %>
+        <div class="apple_pagination">
+          <%= will_paginate @comments, container: false %>
+        </div><!-- End pagination -->
+      <% end %>
       
     </div><!-- End col -->
   </div><!-- End row -->
