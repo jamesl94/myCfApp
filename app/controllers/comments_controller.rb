@@ -1,14 +1,6 @@
 class CommentsController < ApplicationController
 	include CanCan::Ability
 
-	if user.admin?
-		can :manage, :all
-	end
-	if user.signed_in
-		can :create, Comment, :user_id => user.id
-	end
-
-
 	def create
 		@product = Product.find(params[:product_id])
 		@comment = @product.comments.new(comment_params)
