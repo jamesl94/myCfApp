@@ -1,4 +1,13 @@
 class CommentsController < ApplicationController
+	include CanCan::Ability
+
+	if user.admin?
+		can :manage, :all
+	end
+	if user.signed_in
+		can :create, Comment, :user_id => user.id
+	end
+
 
 	def create
 		@product = Product.find(params[:product_id])
@@ -9,13 +18,17 @@ class CommentsController < ApplicationController
 				format.html { redirect_to @product, notice: 'Review successfully created' }
 				format.json { render :show, status: :created, location: @product }
 			else
-				format.html { redirect_to @product, alert: 'Review was not successfully created.' }
+				format.html { redirect_to @product, alert: 'Review was not successfully created' }
 				format.json{ render json: @comment.errors, status: :unprocessable_entity }
 			end
 		end
 	end
 
 	def destroy
+		@comment = Comment.find(params[:id])
+		product = @comment.product
+		@comment.destroy
+		redirect_to product
 	end
 
 	private
