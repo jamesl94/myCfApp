@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
-<head>    
+<head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MyCfApp</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  
+
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
 
@@ -38,17 +38,20 @@
       <%= link_to "My CF E-Commerce app", "/", class: "navbar-brand" %>
     </div>
     <ul class="nav navbar-nav navbar-right">
-      <li>
-      <% if user_signed_in? %>
-        <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+      <% if user_signed_in? && current_user.admin? %>
+        <li><%= link_to(current_user.first_name, current_user, { style: "color: green" }) %></li>
+        <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+      <% elsif user_signed_in? %>
+        <li><%= link_to(current_user.first_name, current_user) %></li>
+        <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
       <% else %>
-        <%= link_to('Login', new_user_session_path) %>
+        <li><%= link_to('Login', new_user_session_path) %></li>
       <% end %>
       </li>
       <li><%= link_to "Products", controller: "/products" %></li>
-      <li><%= link_to "About", controller: "/static_pages", action: "about" %></li> 
-      <li><%= link_to "Contact", controller: "/static_pages", action: "contact" %></li> 
-    </ul> 
+      <li><%= link_to "About", controller: "/static_pages", action: "about" %></li>
+      <li><%= link_to "Contact", controller: "/static_pages", action: "contact" %></li>
+    </ul>
     <%= form_tag '/products', method: "get", class: "navbar-form navbar-left" do %>
       <div class="form-group">
         <%= text_field_tag(:q, nil, class: "form-control", placeholder: "Search Products") %>
