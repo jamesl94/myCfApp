@@ -2,7 +2,7 @@
   <div class="thumbnail">
     <%= link_to image_tag(product.image_url, class: "img-responsive"), product %>
     <div class="caption">
-      <h2><%= product.name %></h2> 
+      <h2><%= product.name %></h2>
       <%= product.description %><br><br>
       <%= product.text %><br>
       <%= link_to 'Edit', edit_product_path(product) %>
@@ -13,3 +13,4 @@
     </div>
   </div><!-- End thumbnail -->
 </div>
+
