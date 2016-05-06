@@ -10,11 +10,17 @@
           <hr>
           <p><%= @product.text %></p>
           <hr>
-          <%= link_to 'Edit', edit_product_path(@product) %> |
-          <%= link_to 'Back', products_path %>
-          <%= form_tag '/payments/create' do %>
-            <%= hidden_field_tag :product_id, @product.id %>
-            <%= render partial: "shared/stripe_checkout_button" %>
+          <% if signed_in? && current_user.admin? %>
+            <%= link_to 'Edit', edit_product_path(@product) %> |
+            <%= link_to 'Back', products_path %>
+          <% end %>
+          <% if user_signed_in? %>
+            <%= form_tag '/payments/create' do %>
+              <%= hidden_field_tag :product_id, @product.id %>
+              <%= render partial: "shared/stripe_checkout_button" %>
+            <% end %>
+          <% else %>
+            <%= link_to "<button class='btn btn-primary'>Sign up</button>".html_safe, new_user_registration_path %>
           <% end %>
           <b><span style="display: inline-block; float: right;"><%= "$%.2f" % @product.price %></span></b>
         </div><!-- End caption -->

@@ -40,7 +40,7 @@ group :development, :test do
   #Rspec
   gem 'rspec-rails', '~> 3.0'
   #Factory girl
-  gem 'factory_girl_rails', '~> 4.0'
+  gem 'factory_girl_rails', '~> 4.0', :require => false
 end
 
 group :development do
