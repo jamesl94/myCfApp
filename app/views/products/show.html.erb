@@ -1,4 +1,4 @@
-<div class="container">  
+<div class="container">
   <div class="row">
     <div class="col-sm-6 col-md-4 col-md-offset-2">
       <div class="thumbnail">
@@ -12,7 +12,11 @@
           <hr>
           <%= link_to 'Edit', edit_product_path(@product) %> |
           <%= link_to 'Back', products_path %>
-          <b><span style="display: inline-block; float: right;"><%= "$%.0f" % @product.price %></span></b>
+          <%= form_tag '/payments/create' do %>
+            <%= hidden_field_tag :product_id, @product.id %>
+            <%= render partial: "shared/stripe_checkout_button" %>
+          <% end %>
+          <b><span style="display: inline-block; float: right;"><%= "$%.2f" % @product.price %></span></b>
         </div><!-- End caption -->
       </div><!-- End thumbnail -->
       <%= render partial: "new_comment" %>
@@ -22,7 +26,7 @@
           <%= will_paginate @comments, container: false %>
         </div><!-- End pagination -->
       <% end %>
-      
+
     </div><!-- End col -->
   </div><!-- End row -->
   <br/>
