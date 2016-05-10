@@ -2,9 +2,7 @@
   <tbody>
     <td>
       <tr>Hey you bought a nice product</tr>
-    </td>
-    <td>
-      <tr>It cost <h1><%= @price %></h1></tr>
+      <tr>It cost <h1><%= '%.2f' % @price %></h1></tr>
     </td>
   </tbody>
 </table>
