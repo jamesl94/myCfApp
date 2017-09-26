@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>    
+<head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MyCfApp</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <%= csrf_meta_tags %>
 </head>
 
 <body>
@@ -32,23 +35,46 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">My CF E-commerce app</a>
+      <%= link_to "My CF E-Commerce app", "/", class: "navbar-brand" %>
     </div>
     <ul class="nav navbar-nav navbar-right">
+<<<<<<< HEAD
       <li><%= link_to "Home", controller: "static_pages", action: "landing_page" %></li>
       <li><%= link_to "About", controller: "static_pages", action: "about" %></li> 
       <li><%= link_to "Contact", controller: "static_pages", action: "contact" %></li> 
+=======
+      <% if user_signed_in? && current_user.admin? %>
+        <li><%= link_to(current_user.first_name, current_user, { style: "color: green" }) %></li>
+        <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+      <% elsif user_signed_in? %>
+        <li><%= link_to(current_user.first_name, current_user) %></li>
+        <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+      <% else %>
+        <li><%= link_to('Login', new_user_session_path) %></li>
+      <% end %>
+      </li>
+      <li><%= link_to "Products", controller: "/products" %></li>
+      <li><%= link_to "About", controller: "/static_pages", action: "about" %></li>
+      <li><%= link_to "Contact", controller: "/static_pages", action: "contact" %></li>
+>>>>>>> b0565d5380cd6b33d195753fe678771aaddc6dec
     </ul>
     <%= form_tag '/products', method: "get", class: "navbar-form navbar-left" do %>
       <div class="form-group">
-        <%= label_tag(:q, 'Search for: ', style:'color: white') %>
-        <%= text_field_tag(:q) %>
-        <%= submit_tag('Search') %>
+        <%= text_field_tag(:q, nil, class: "form-control", placeholder: "Search Products") %>
+        <%= submit_tag('Search', class: "btn btn-default") %>
       </div>
     </form>
     <% end %>
   </div>
 </nav>
+
+<!-- Notice Message -->
+<% if notice %>
+  <div class="alert alert-info" role="alert"><%= notice %></div>
+<% end %>
+<% if alert %>
+  <div class="alert alert-info" role="alert"><%= alert %></div>
+<% end %>
 
 <%= yield %>
 
